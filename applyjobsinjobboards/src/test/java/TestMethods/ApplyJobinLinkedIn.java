@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pages.LinkedInPage;
@@ -27,8 +28,9 @@ public class ApplyJobinLinkedIn extends BaseClass {
 		linkedin = new LinkedInPage(driver);
 	}
 
+	@Parameters({ "uname", "pwd" })
 	@Test(priority = 0)
-	public void logintoLinkedIn() throws InterruptedException {
+	public void logintoLinkedIn(String uname, String pwd) throws InterruptedException {
 		linkedin.enterUsername(uname);
 		linkedin.enterPassword(pwd);
 		linkedin.clickSubmit();

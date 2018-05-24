@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pages.MonsterPage;
@@ -25,8 +26,9 @@ public class ApplyJobinMonster extends BaseClass {
 		monster = new MonsterPage(driver);
 	}
 
+	@Parameters({ "uname", "pwd" })
 	@Test(priority = 1)
-	public void logintoMonster() throws InterruptedException {
+	public void logintoMonster(String uname, String pwd) throws InterruptedException {
 		monster.clickLoginLink();
 		monster.enterUsername(uname, pwd);
 		// monster.enterPassword(pwd);

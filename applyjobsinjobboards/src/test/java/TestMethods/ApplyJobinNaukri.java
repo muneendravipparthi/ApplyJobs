@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pages.NaukriPage;
@@ -18,8 +19,6 @@ import utility.BaseClass;
 
 public class ApplyJobinNaukri extends BaseClass {
 
-	String uname = "vipparthimuneendra@gmail.com";
-	String pwd = "munnabhai";
 	String skills = "Selenium WebDriver";
 	String location = "Hyderabad";
 	String exp = "3 Years";
@@ -35,15 +34,16 @@ public class ApplyJobinNaukri extends BaseClass {
 		naukri = new NaukriPage(driver);
 	}
 
+	@Parameters({ "uname", "pwd" })
 	@Test(priority = 1)
-	public void logintoNaukri() throws InterruptedException {
+	public void logintoNaukri(String uname, String pwd) throws InterruptedException {
 		naukri.clickLoginLink();
 		Thread.sleep(5000);
 		naukri.enterUsername(uname);
 		naukri.enterPassword(pwd);
 		naukri.clicksubmit();
 		Thread.sleep(5000);
-		
+
 		ArrayList tabs = new ArrayList(driver.getWindowHandles());
 		driver.switchTo().window((String) tabs.get(1)).close();
 		driver.switchTo().window((String) tabs.get(2)).close();
